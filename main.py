@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+import os
 
 app = FastAPI(title="Apex Lab")
 
-# Serve static assets (CSS, JS, images if added later)
+# Ensure static directory exists, then mount it
+os.makedirs("static", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
